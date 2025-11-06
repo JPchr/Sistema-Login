@@ -24,7 +24,7 @@ $resultado = $conexion->query($sql_check);
 if ($resultado && $resultado->num_rows > 0) {
     echo "<script>
         alert('El usuario o correo ya existen. Intenta con otros.');
-        window.location.href = 'Registro.html';
+        window.location.href = '../html/Registro.html';
     </script>";
     exit();
 } else {
@@ -35,12 +35,12 @@ if ($resultado && $resultado->num_rows > 0) {
     if ($conexion->query($sql_insert) === TRUE) {
         echo "<script>
             alert('Usuario registrado correctamente.');
-            window.location.href = 'Inicio.html';
+            window.location.href = '../html/Inicio.html';
         </script>";
     } else {
         echo "<script>
             alert('Error al registrar el usuario: " . $conexion->error . "');
-            window.location.href = 'Registro.html';
+            window.location.href = '../html/Registro.html';
         </script>";
     }
 }

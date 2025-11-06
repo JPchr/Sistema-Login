@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('conexion.php');
+include('./conexion.php');
 
 $usuario = trim($_POST['usuario']);
 $contrasena = $_POST['contrasena'];
@@ -19,18 +19,18 @@ if ($resultado->num_rows > 0) {
 
         echo "<script>
             alert('Inicio de sesión exitoso. ¡Bienvenido, " . $fila['nombre'] . "!');
-            window.location = 'menu.html';
+            window.location = '../html/menu.html';
         </script>";
     } else {
         echo "<script>
             alert('Contraseña incorrecta.');
-            window.location = 'Inicio.html';
+            window.location = '../html/Inicio.html';
         </script>";
     }
 } else {
     echo "<script>
         alert('Usuario no encontrado.');
-        window.location = 'Inicio.html';
+        window.location = '../html/Inicio.html';
     </script>";
 }
 
