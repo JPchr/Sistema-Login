@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Escolar - Registro</title>
+  <link rel="stylesheet" href="../css/Registro.css">
+</head>
+<body>
+  <header>
+  </header>
+
+  <main>
+    <div class="login-container">
+      <h2>Registro</h2>
+      <form action="../html/Inicio.html" method="POST">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required>
+
+        <label for="correo">Correo:</label>
+        <input type="text" id="correo" name="correo" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <label for="confirmar">Confirmar contraseña:</label>
+        <input type="password" id="confirmar" name="confirmar" required> 
+
+      <div class="botones">   
+        <button type="submit" class="btn-regresar" onclick="window.location.href='../html/Inicio.html'">Regresar</button>
+        <button type="submit" class="btn-confirmar">Confirmar registro</button>
+    </div>
+   </form>
+  </div>
+</main>
+
+  <footer>
+    Control escolar @2025
+  </footer>
+</body>
+</html>

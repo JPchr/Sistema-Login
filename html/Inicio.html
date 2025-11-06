@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Escolar - Iniciar Sesión</title>
+  <link rel="stylesheet" href="../css/Inicio.css">
+</head>
+<body>
+  <header>
+    Control Escolar
+  </header>
+
+  <main>
+    <div class="login-container">
+      <h2>Inicio de sesión</h2>
+      <form action="./menu.html" method="POST">
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required>
+
+        <label for="contrasena">Contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <div class="links">
+          <a href="./Registro.html">¿No tienes cuenta? Regístrate ahora!</a><br>
+          <a href="./Restablecer-contra.html">¿Olvidaste tu contraseña? Recupérala aquí!!</a>
+        </div>
+
+        <button type="submit" class="btn-iniciar">Iniciar</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    Control escolar @2025
+  </footer>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Escolar - Restablecer contraseña</title>
+  <link rel="stylesheet" href="../css/Restablecer-contra.css">
+</head>
+<body>
+  <header>
+    Control Escolar
+  </header>
+
+  <main>
+    <div class="login-container">
+      <h2>Restablecer contraseña</h2>
+      <form action="./Inicio.html" method="POST">
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" name="usuario" required>
+
+        <label for="correo">Correo:</label>
+        <input type="text" id="correo" name="correo" required>
+
+        <label for="codigo verif">Codigo de verificacion:</label>
+        <input type="password" id="codigo verif" name="codigo verif" required>
+
+        <label for="contrasena">Ingrese su nueva contraseña:</label>
+        <input type="password" id="contrasena" name="contrasena" required>
+
+        <button type="submit" class="btn-regresar" onclick="window.location.href='./Inicio.html'">Regresar</button>
+        <button type="submit" class="btn-finalizar" onclick="window.location.href='./Inicio.html'">Finalizar</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    Control escolar @2025
+  </footer>
+</body>
+</html>
