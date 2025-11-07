@@ -1,3 +1,16 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once 'conn.php';
+include('./autorizacion.php');
+
+if (esta_conectado_usuario()) {
+        echo "<script>
+        window.location = '../html/menu.html';
+        </script>";
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,6 +33,13 @@
 
         <label for="contrasena">Contraseña:</label>
         <input type="password" id="contrasena" name="contrasena" required>
+
+        <div>
+            <label for="remember_me">
+                <input type="checkbox" name="RecordarSesion" id="RecordarSesion" value="checked"/>
+                Recordar Sesion
+            </label>
+        </div>
 
         <div class="links">
           <a href="./Registro.html">¿No tienes cuenta? Regístrate ahora!</a><br>

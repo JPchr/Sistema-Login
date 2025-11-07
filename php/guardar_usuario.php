@@ -29,13 +29,13 @@ if ($resultado && $resultado->num_rows > 0) {
     exit();
 } else {
     // Insertar nuevo usuario
-    $sql_insert = "INSERT INTO usuarios (nombre, usuario, correo, contrasena)
-                   VALUES ('$nombre', '$usuario', '$correo', '$hash')";
+    $sql_insert = "INSERT INTO usuarios (nombre, usuario, correo, contrasena, activo, rol)
+                   VALUES ('$nombre', '$usuario', '$correo', '$hash', 1, 3)";
 
     if ($conexion->query($sql_insert) === TRUE) {
         echo "<script>
             alert('Usuario registrado correctamente.');
-            window.location.href = '../html/Inicio.html';
+            window.location.href = '../php/index.php';
         </script>";
     } else {
         echo "<script>

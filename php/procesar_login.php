@@ -1,38 +1,40 @@
 <?php
-session_start();
-include('./conexion.php');
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+require_once 'conn.php';
+include('./autorizacion.php');
 
 $usuario = trim($_POST['usuario']);
 $contrasena = $_POST['contrasena'];
+$recordar = $_POST['RecordarSesion'];
 
-$sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
-$resultado = $conexion->query($sql);
+$sql = 'SELECT *
+            FROM usuarios
+            WHERE usuario = :usuario
+            LIMIT 1';
 
-if ($resultado->num_rows > 0) {
-    $fila = $resultado->fetch_assoc();
+    $query = db()->prepare($sql);
+    $query->bindValue(':usuario', $usuario);
+    $query->execute();
+    $fila = $query->fetch(PDO::FETCH_ASSOC);
+
+if ($fila) {
 
    
-    if (password_verify($contrasena, $fila['contrasena'])) {
-      
-        $_SESSION['usuario'] = $fila['usuario'];
-        $_SESSION['nombre'] = $fila['nombre'];
+    if (login($usuario,$contrasena,$recordar)) {
 
         echo "<script>
             alert('Inicio de sesión exitoso. ¡Bienvenido, " . $fila['nombre'] . "!');
             window.location = '../html/menu.html';
         </script>";
     } else {
-        echo "<script>
-            alert('Contraseña incorrecta.');
-            window.location = '../html/Inicio.html';
-        </script>";
+
     }
 } else {
     echo "<script>
         alert('Usuario no encontrado.');
-        window.location = '../html/Inicio.html';
+        window.location = '../php/index.php';
     </script>";
 }
-
-$conexion->close();
 ?>
