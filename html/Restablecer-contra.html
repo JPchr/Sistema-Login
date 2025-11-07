@@ -5,36 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Control Escolar - Restablecer contraseña</title>
   <link rel="stylesheet" href="../css/Restablecer-contra.css">
+  <script>
+    function validarUsuario(input) {
+      input.value = input.value.replace(/[^a-z0-9]/g, '');
+    }
+    function validarCorreo(input) {
+      input.value = input.value.replace(/[^a-zA-Z0-9@._%+-]/g, '');
+    }
+    function validarFormulario(event) {
+      const usuario = document.getElementById('usuario');
+      const correo = document.getElementById('correo');
+      const contrasena = document.getElementById('contrasena');
+
+      const usuarioRegex = /^[a-z0-9]+$/;
+      const correoRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      if (!usuarioRegex.test(usuario.value)) {
+        alert('El usuario solo puede contener letras minúsculas y números.');
+        event.preventDefault();
+        return false;
+      }
+
+      if (!correoRegex.test(correo.value)) {
+        alert('Por favor ingrese un correo electrónico válido.');
+        event.preventDefault();
+        return false;
+      }
+
+      if (contrasena.value.length < 6) {
+        alert('La nueva contraseña debe tener al menos 6 caracteres.');
+        event.preventDefault();
+        return false;
+      }
+
+      return true;
+    }
+  </script>
 </head>
 <body>
-  <header>
-    Control Escolar
-  </header>
+  <header>Control Escolar</header>
 
   <main>
     <div class="login-container">
       <h2>Restablecer contraseña</h2>
-      <form action="../php/index.php" method="POST">
+      <form action="../php/restablecer_contra.php" method="POST" onsubmit="return validarFormulario(event)">
         <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario" required>
+        <input type="text" id="usuario" name="usuario" required oninput="validarUsuario(this)" pattern="[a-z0-9]+" title="Solo se permiten letras minúsculas y números.">
 
         <label for="correo">Correo:</label>
-        <input type="text" id="correo" name="correo" required>
+        <input type="text" id="correo" name="correo" required oninput="validarCorreo(this)" pattern="[a-zA-Z0-9@._%+-]+" title="Solo se permiten letras, números y símbolos comunes de correo.">
 
-        <label for="codigo verif">Codigo de verificacion:</label>
-        <input type="password" id="codigo verif" name="codigo verif" required>
-
-        <label for="contrasena">Ingrese su nueva contraseña:</label>
+        <label for="contrasena">Nueva contraseña:</label>
         <input type="password" id="contrasena" name="contrasena" required>
 
-        <button type="submit" class="btn-regresar" onclick="window.location.href='../php/index.php'">Regresar</button>
-        <button type="submit" class="btn-finalizar" onclick="window.location.href='../php/index.php'">Finalizar</button>
+        <div class="botones">
+          <button type="button" class="btn-regresar" onclick="window.location.href='../php/index.php'">Regresar</button>
+          <button type="submit" class="btn-finalizar">Finalizar</button>
+        </div>
       </form>
     </div>
   </main>
 
-  <footer>
-    Control escolar @2025
-  </footer>
+  <footer>Control Escolar @2025</footer>
 </body>
 </html>
