@@ -20,7 +20,7 @@ if (esta_conectado_usuario()) {
   <link rel="stylesheet" href="../css/Inicio.css">
   <script>
     function validarUsuario(input) {
-      input.value = input.value.replace(/[^a-z0-9]/g, '');
+      input.value = input.value.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]/g, '');
     }
   </script>
 </head>
@@ -36,7 +36,7 @@ if (esta_conectado_usuario()) {
         <label for="usuario">Usuario:</label>
         <input type="text" id="usuario" name="usuario" required 
                oninput="validarUsuario(this)" 
-               pattern="[a-z0-9]+" 
+               pattern="[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ]+" 
                title="Solo se permiten letras minúsculas (sin acentos) y números.">
 
         <label for="contrasena">Contraseña:</label>
