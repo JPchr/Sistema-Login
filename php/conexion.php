@@ -1,12 +1,12 @@
 <?php
-$servidor = "localhost";
-$usuario = "root";
-$clave = "";
-$bd = "control_escolar"; 
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "control_escolar";
 
-$conexion = new mysqli($servidor, $usuario, $clave, $bd);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-if ($conexion->connect_error) {
-    die("Error de conexión: " . $conexion->connect_error);
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
 ?>

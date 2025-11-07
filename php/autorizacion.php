@@ -20,7 +20,6 @@ function login(string $Nusuario, string $contraseña, bool $recordar = false): b
         $usuario = $query->fetch(PDO::FETCH_ASSOC);
     }
 
-    // if user found, check the password
     if ($usuario && esta_usuario_activo($usuario) && password_verify($contraseña, $usuario['contrasena'])) {
 
         iniciar_sesion_usuario($usuario);
@@ -45,7 +44,6 @@ function iniciar_sesion_usuario(array $usuario): bool
 {
 
     if (session_regenerate_id()) {
-        #id y nombre del usuario en la sesion
         $_SESSION['usuario'] = $usuario['usuario'];
         $_SESSION['idUsuario'] = $usuario['id'];
         return true;
@@ -58,13 +56,10 @@ function recordarme(int $idUsuario, int $dia = 30)
 {
     [$selector, $validador, $token] = generar_tokens();
 
-    // remove all existing token associated with the user id
     borrar_token_usuario($idUsuario);
 
-    // set expiration date
     $segundos_expirados = time() + 60 * 60 * 24 * $dia;
 
-    // insert a token to the database
     $validadorHash = password_hash($validador, PASSWORD_DEFAULT);
     $expiracion = date('Y-m-d H:i:s', $segundos_expirados);
 
@@ -77,19 +72,15 @@ function logout(): void
 {
     if (esta_conectado_usuario()) {
 
-        // borrar token del usuario
         borrar_token_usuario($_SESSION['idUsuario']);
 
-        // borrar sesion
         unset($_SESSION['usuario'], $_SESSION['idUsuario']);
 
-        // remover cookies de recordar la sesion
         if (isset($_COOKIE['recordarme'])) {
             unset($_COOKIE['recordarme']);
             setcookie('recordar_usuario', null, -1);
         }
 
-        // remover informacion de la sesion
         session_destroy();
         
         echo "<script>
@@ -105,12 +96,10 @@ function logout(): void
 
 function esta_conectado_usuario(): bool
 {
-    // check the session
     if (isset($_SESSION['usuario'])) {
         return true;
     }
 
-    // check the remember_me in cookie
     $token = filter_input(INPUT_COOKIE, 'recordarme', FILTER_SANITIZE_SPECIAL_CHARS);
 
     if ($token && validar_token($token)) {

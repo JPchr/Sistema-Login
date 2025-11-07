@@ -6,9 +6,9 @@ require_once 'conn.php';
 include('./autorizacion.php');
 
 if (esta_conectado_usuario()) {
-        echo "<script>
+    echo "<script>
         window.location = '../html/menu.html';
-        </script>";
+    </script>";
 }
 ?>
 <!DOCTYPE html>
@@ -18,6 +18,11 @@ if (esta_conectado_usuario()) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Control Escolar - Iniciar Sesión</title>
   <link rel="stylesheet" href="../css/Inicio.css">
+  <script>
+    function validarUsuario(input) {
+      input.value = input.value.replace(/[^a-z0-9]/g, '');
+    }
+  </script>
 </head>
 <body>
   <header>
@@ -29,7 +34,10 @@ if (esta_conectado_usuario()) {
       <h2>Inicio de sesión</h2>
       <form action="../php/procesar_login.php" method="POST">
         <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario" required>
+        <input type="text" id="usuario" name="usuario" required 
+               oninput="validarUsuario(this)" 
+               pattern="[a-z0-9]+" 
+               title="Solo se permiten letras minúsculas (sin acentos) y números.">
 
         <label for="contrasena">Contraseña:</label>
         <input type="password" id="contrasena" name="contrasena" required>
@@ -37,13 +45,13 @@ if (esta_conectado_usuario()) {
         <div>
             <label for="RecordarSesion">
                 <input type="checkbox" name="RecordarSesion" id="RecordarSesion" value="checked"/>
-                Recordar Sesion
+                Recordar Sesión
             </label>
         </div>
 
         <div class="links">
-          <a href="../html/Registro.html">¿No tienes cuenta? Regístrate ahora!</a><br>
-          <a href="../html/Restablecer-contra.html">¿Olvidaste tu contraseña? Recupérala aquí!!</a>
+          <a href="../html/Registro.html">¿No tienes cuenta? ¡Regístrate ahora!</a><br>
+          <a href="../html/Restablecer-contra.html">¿Olvidaste tu contraseña? ¡Recupérala aquí!</a>
         </div>
 
         <button type="submit" class="btn-iniciar">Iniciar</button>
