@@ -8,6 +8,10 @@ include('./autorizacion.php');
 $usuario = trim($_POST['usuario']);
 $contrasena = $_POST['contrasena'];
 $recordar = $_POST['RecordarSesion'];
+if($recordar!=true){
+    $recordar=false;
+}
+
 
 $sql = 'SELECT *
             FROM usuarios
