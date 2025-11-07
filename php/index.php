@@ -35,15 +35,15 @@ if (esta_conectado_usuario()) {
         <input type="password" id="contrasena" name="contrasena" required>
 
         <div>
-            <label for="remember_me">
+            <label for="RecordarSesion">
                 <input type="checkbox" name="RecordarSesion" id="RecordarSesion" value="checked"/>
                 Recordar Sesion
             </label>
         </div>
 
         <div class="links">
-          <a href="./Registro.html">¿No tienes cuenta? Regístrate ahora!</a><br>
-          <a href="./Restablecer-contra.html">¿Olvidaste tu contraseña? Recupérala aquí!!</a>
+          <a href="../html/Registro.html">¿No tienes cuenta? Regístrate ahora!</a><br>
+          <a href="../html/Restablecer-contra.html">¿Olvidaste tu contraseña? Recupérala aquí!!</a>
         </div>
 
         <button type="submit" class="btn-iniciar">Iniciar</button>
